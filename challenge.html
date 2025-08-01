@@ -450,6 +450,7 @@ var hookGDT_uid					= 'uuid'
 var hookGDT_groupid				= 'groupId'
 var userId						= '';
 var apiToken					= '';
+var clientId                    = 'bc10ec41-4213-4482-bbb8-558e3c3ea8d5-ChallengeDataTool';
 var challengeId 				= ''; //holds selected challenge (drop down)
 var groupId 					= ''; //holds group id from 
 var hideAvatar					= false;
@@ -787,7 +788,7 @@ function fetchChallengeForUser() {
 		if (debug) console.log(serverUrl + serverPathChallengeForUser + callInt)
 		var call = []
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathChallengeForUser + callInt, newData: '', fnSuccess: fetchChallengeForUserSuccess, fnFailure: fetchFailure, statusText: 'Getting Challenges for User'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	}
 
 	
@@ -856,7 +857,7 @@ function fetchData() {
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathContent, newData: '', fnSuccess: fetchContentSuccess, fnFailure: fetchFailure, statusText: 'Asking for Generic Content'})
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathChallenge + '/' + challengeId, newData: '', fnSuccess: fetchChallengeSuccess, fnFailure: fetchFailure, statusText: 'Asking for Challenge Content'})
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathChallengeTasks + '/' + challengeId, newData: '', fnSuccess: fetchChallengeTasksSuccess, fnFailure: fetchFailure, statusText: 'Asking for Challenge Content'})
-	makeAjaxCall(call, userId, apiToken, rlCurrent)
+	makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	
 	
 	
@@ -950,7 +951,7 @@ function fetchData() {
 		
 		call = [] //clear list
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathGroup + '/' + groupId, newData: '', fnSuccess: fetchGuildSuccess, fnFailure: fetchFailure, statusText: 'Asking for Guild Data'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 
 	}
 		
@@ -972,7 +973,7 @@ function fetchData() {
 		
 		call = [] //clear list
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathParty, newData: '', fnSuccess: fetchPartySuccess, fnFailure: fetchFailure, statusText: 'Asking for Party Data'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	
 	}	
 	
@@ -1004,7 +1005,7 @@ function fetchData() {
 		if (debugShowObject) console.log(completeUrl);	
 		call = []
 		call.push({requestType: 'GET', urlTo: completeUrl, newData: '', fnSuccess: fetchMemberListSuccess, fnFailure: fetchMemberListFailure, statusText: 'Asking for Member List (' + memberListToFetch.length + ' so far)'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	
 	}
 
@@ -1094,7 +1095,7 @@ function fetchData() {
 				if (debug) console.log('debug MEMBER DATA -Yes we are finally here folks ( Challenge ' + obj.id + ')');
 				call.push({requestType: 'GET', urlTo: serverUrl + serverPathChallenge + '/' + challengeId + serverPathMemberProfilePart + '/' + obj.id, newData: '', fnSuccess: fetchMemberChallengeSuccess, fnFailure: fetchMemberChallengeFail, statusText: 'Asking for Member' + SINGLEQUOTE + 's Task Data ... (This can take a while - ' + (index + 1) + ' of ' + listToFetch_Challenge.length + ')'})
 			});
-			makeAjaxCall(call, userId, apiToken, rlCurrent)	
+			makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)	
 		}	
 	}	
 		
@@ -1247,7 +1248,7 @@ function postMessageUser(rowData, uuidIndex, nameIndex) {
 
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postMessageUserSuccess, fnFailure: postMessageUserFailure, statusText: 'Messaging ' + obj[actionIndex] })
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	}
 		
 
@@ -1371,7 +1372,7 @@ function postGiftGem(rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postGiftGemSuccess, fnFailure: postGiftGemFailure, statusText: 'Giving Gems to ' + obj[actionIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 
 	}
 		
@@ -1463,7 +1464,7 @@ function postAwardChallenge(rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postAwardChallengeSuccess, fnFailure: postAwardChallengeFailure, statusText: 'Awarding Challenge to ' + obj[actionIndex]  })
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	}
 		
 
